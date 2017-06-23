@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>News app</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="jumbotron alert-info">
+        <div class="container">
+            <h1>News APP</h1>
+            <p>This page shows the latest news
+            </p>
+            <p><a class="btn btn-primary btn-lg" role="button" href="/serious-javascript/">Refresh news</a></p>
+            <p><a class="btn btn-primary btn-lg" role="button" href="source">See news sources</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div id='main'>
+            <div class="group-input">
+                <input class="form-control" placeholder="Search news articles" type="text" id="searchBox"
+                /><br/><br/>
+
+                <table class="table table-hover table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            <tr>
+                                <th class="col-md-2">Title</th>
+                                <th class="col-md-2">Author</th>
+                                <th class="col-md-6">Description</th>
+                                <th class="col-md-1">Published At</th>
+                            </tr>
+                        </tr>
+                    </thead>
+                    <tbody id="results">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script type='text/template' id='ArticleTemplate'>
+            <td class="col-md-2">
+                <a href="<%= url %>">
+                    <%= title %>
+                </a>
+            </td>
+            <td class="col-md-2">
+                <%= author %>
+            </td>
+            <td class="col-md-6">
+                <%= description %>
+            </td>
+            <td class="col-md-1">
+                <%= publishedAt %>
+            </td>
+        </script>
+
+        <script type='text/template' id='SourceTemplate'>
+            <div class="blog-header" style="margin-bottom: 50px;">
+                <div class="row">
+                    <table class="table table-hover table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <tr>
+                                    <th class="col-md-3">Name</th>
+                                    <th class="col-md-6">Description</th>
+                                    <th class="col-md-2">Category</th>
+                                    <th class="col-md-1">Language</th>
+                                </tr>
+                            </tr>
+                        </thead>
+                        <tbody id="results">
+                            <% _.each(sources, function(item) { %>
+                                <tr>
+                                    <td class="col-md-3">
+                                        <a href="<%= item.url %>">
+                                            <%= item.name %>
+                                        </a>
+                                    </td>
+                                    <td class="col-md-6"><%= item.description %></td>
+                                    <td class="col-md-2"><%= item.category %></td>
+                                    <td class="col-md-1"><%= item.language %></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </script>
+
+        <script type='text/template' id='ArticlesViewTemplate'>            
+        </script>
+    </div>
+    <script src="./dist/bundle.js"></script>
+</body>
+
+</html>
